@@ -8,9 +8,17 @@ export interface ICreateCategoryDTO {
 
 export class CategoryRepository implements ICategoryRepository {
   private categories: Category[];
+  private static INSTANCE: CategoryRepository;
 
-  constructor() {
+  private constructor() {
     this.categories = [];
+  }
+
+  public static getInstance() {
+    if (!CategoryRepository.INSTANCE) {
+      CategoryRepository.INSTANCE = new CategoryRepository();
+    }
+    return CategoryRepository.INSTANCE;
   }
 
   create({ name, description }: ICreateCategoryDTO): void {
