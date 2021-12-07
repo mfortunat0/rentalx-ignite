@@ -1,5 +1,5 @@
-import * as express from "express";
-import swaggerUi from "swagger-ui-express";
+import express from "express";
+import * as swaggerUi from "swagger-ui-express";
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 const app = express();
