@@ -31,5 +31,12 @@ export class ImportCategoryUseCase {
 
   async execute(file: Express.Multer.File) {
     const categories = await this.loadCategories(file);
+    categories.map(async (category) => {
+      const { name, description } = category;
+      const existsCategory = this.categoryRepository.findByName(name);
+      if (!existsCategory) {
+        this.categoryRepository.create({ name, description });
+      }
+    });
   }
 }
