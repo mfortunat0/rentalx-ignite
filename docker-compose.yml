@@ -1,5 +1,16 @@
 version: "3.7"
 services:
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ignite
+      POSTGRES_PASSWORD: ignite
+      POSTGRES_DB: ignite
+    volumes:
+      - pgdata:/data/postgres
   app:
     build: .
     ports:
@@ -7,3 +18,7 @@ services:
     volumes:
       - ./:/usr/app/
     container_name: rentalx
+
+volumes:
+  pgdata:
+    driver: local
