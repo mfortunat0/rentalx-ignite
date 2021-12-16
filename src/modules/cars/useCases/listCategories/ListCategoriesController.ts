@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { CreateCategoryUseCase } from "../createCategory/CreateCategoryUseCase";
 import { ListCategoriesUseCase } from "./ListCategoriesUseCase";
 
 export class ListCategoriesController {
