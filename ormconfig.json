@@ -4,5 +4,9 @@
   "port": 5432,
   "username": "ignite",
   "password": "ignite",
-  "database": "ignite"
+  "database": "ignite",
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
