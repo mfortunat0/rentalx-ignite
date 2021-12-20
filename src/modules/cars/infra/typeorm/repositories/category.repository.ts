@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
-import { Category } from "../../entities/Category";
-import { ICategoryRepository } from "../icategory.repository";
+import { Category } from "../entities/Category";
+import { ICategoryRepository } from "../../../repositories/icategory.repository";
 
 export interface ICreateCategoryDTO {
   name: string;
