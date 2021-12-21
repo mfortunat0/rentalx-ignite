@@ -1,6 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { ICreateUserDto } from "../../dtos/ICreateUserDto";
-import { UserRepositotyInMemory } from "../../in-memory/UserRepositoryInMemory";
+import { UserRepositotyInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 
