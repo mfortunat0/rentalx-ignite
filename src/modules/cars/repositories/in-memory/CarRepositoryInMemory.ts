@@ -21,6 +21,7 @@ export class CarRepositoryInMemory implements ICarRepository {
     license_plate,
     description,
     name,
+    id,
   }: ICreateCarDto): Promise<Car> {
     const car = new Car();
     Object.assign(car, {
@@ -31,6 +32,7 @@ export class CarRepositoryInMemory implements ICarRepository {
       license_plate,
       description,
       name,
+      id,
     });
     this.cars.push(car);
     return car;

@@ -28,7 +28,7 @@ describe("Create car specification", () => {
     }).rejects.toBeInstanceOf(AppError);
   });
 
-  it("should not be able to add a new specification to a non-existent car", async () => {
+  it("should not be able to add a new specification to the car", async () => {
     const car = await carsRepositoryInMemory.create({
       name: "name",
       description: "description",
@@ -39,10 +39,17 @@ describe("Create car specification", () => {
       category_id: "category",
     });
 
-    const specification_id = ["512312"];
-    await createCarSpecificationUseCase.execute({
-      car_id: car.id,
-      specification_id,
+    const specification = await specificationRepositoryInMemory.create({
+      name: "teste",
+      description: "teste",
     });
+
+    const specificationCar = await createCarSpecificationUseCase.execute({
+      car_id: car.id,
+      specification_id: [specification.id],
+    });
+
+    expect(specificationCar).toHaveProperty("specifications");
+    expect(specificationCar.specifications.length).toBe(1);
   });
 });
