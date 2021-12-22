@@ -1,4 +1,5 @@
 import { ICarRepository } from "@modules/cars/repositories/icar.repository";
+import { inject, injectable } from "tsyringe";
 
 interface IRequest {
   category_id?: string;
@@ -6,8 +7,12 @@ interface IRequest {
   name?: string;
 }
 
-export class ListCarsUseCase {
-  constructor(private carsRepository: ICarRepository) {}
+@injectable()
+export class ListAvailableCarsUseCase {
+  constructor(
+    @inject("CarRepository")
+    private carsRepository: ICarRepository
+  ) {}
 
   async execute({ category_id, name, brand }: IRequest) {
     const cars = await this.carsRepository.findAvailable(

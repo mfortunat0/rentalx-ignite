@@ -19,5 +19,4 @@ container.registerSingleton<ISpecificationRepository>(
 );
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
-
 container.registerSingleton<ICarRepository>("CarRepository", CarRepository);
