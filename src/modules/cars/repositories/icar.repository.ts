@@ -3,6 +3,7 @@ import { Car } from "../infra/typeorm/entities/Car";
 
 export interface ICarRepository {
   create(createCarDto: ICreateCarDto): Promise<Car>;
+  findById(id: string): Promise<Car>;
   findByLicensePlate(license_plate: string): Promise<Car>;
   findAvailable(
     brand?: string,

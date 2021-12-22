@@ -9,6 +9,10 @@ export class CarRepositoryInMemory implements ICarRepository {
     return this.cars.find((car) => car.license_plate === license_plate);
   }
 
+  async findById(id: string): Promise<Car> {
+    return this.cars.find((car) => car.id === id);
+  }
+
   async create({
     category_id,
     brand,
