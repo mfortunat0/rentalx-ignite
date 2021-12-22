@@ -1,4 +1,5 @@
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
+import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
 import { ICarRepository } from "@modules/cars/repositories/icar.repository";
 import { AppError } from "@shared/errors/AppError";
 import { inject, injectable } from "tsyringe";
@@ -11,6 +12,7 @@ interface IRequest {
   fine_amount: number;
   brand: string;
   category_id: string;
+  specifications: Specification[];
 }
 
 @injectable()
@@ -27,6 +29,7 @@ export class CreateCarUseCase {
     fine_amount,
     brand,
     category_id,
+    specifications,
   }: IRequest): Promise<Car> {
     const carAlreadyExists = await this.carsRepository.findByLicensePlate(
       license_plate
