@@ -3,6 +3,7 @@ import { IDateProvider } from "@shared/container/providers/dateProvider/IDatePro
 import { AppError } from "@shared/errors/AppError";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { inject, injectable } from "tsyringe";
 
 dayjs.extend(utc);
 
@@ -11,10 +12,12 @@ interface IRequest {
   car_id: string;
   expected_return_date: Date;
 }
-
+@injectable()
 export class CreateRentalUseCase {
   constructor(
+    @inject("RentalRepository")
     private rentalsRepository: IRentalRepository,
+    @inject("DayjsDateProvider")
     private dateProvider: IDateProvider
   ) {}
   async execute({ car_id, user_id, expected_return_date }: IRequest) {
