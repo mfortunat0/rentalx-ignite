@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 let connection: Connection;
 
-describe("Create category controller", () => {
+describe("List category controller", () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
@@ -23,7 +23,7 @@ describe("Create category controller", () => {
     await connection.close();
   });
 
-  it("should be able to create a new category", async () => {
+  it("should be able to list all categories", async () => {
     const responseToken = await request(app).post("/sessions").send({
       email: "admin@admin.com",
       password: "admin",
@@ -31,7 +31,7 @@ describe("Create category controller", () => {
 
     const { token } = responseToken.body;
 
-    const response = await request(app)
+    await request(app)
       .post("/categories")
       .send({
         name: "nameCategory",
@@ -40,26 +40,12 @@ describe("Create category controller", () => {
       .set({
         Authorization: `Bearer ${token}`,
       });
-    expect(response.status).toBe(201);
-  });
 
-  it("should not be able to create a new category with name exists", async () => {
-    const responseToken = await request(app).post("/sessions").send({
-      email: "admin@admin.com",
-      password: "admin",
-    });
+    const response = await request(app).get("/categories");
 
-    const { token } = responseToken.body;
-
-    const response = await request(app)
-      .post("/categories")
-      .send({
-        name: "nameCategory",
-        description: "descriptionCategory",
-      })
-      .set({
-        Authorization: `Bearer ${token}`,
-      });
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(1);
+    expect(response.body[0]).toHaveProperty("id");
+    expect(response.body[0].name).toEqual("nameCategory");
   });
 });
