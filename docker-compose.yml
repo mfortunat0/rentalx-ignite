@@ -6,9 +6,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: ignite
-      POSTGRES_PASSWORD: ignite
-      POSTGRES_DB: ignite
+      POSTGRES_USER: rentx
+      POSTGRES_PASSWORD: rentx
+      POSTGRES_DB: rentx
     volumes:
       - pgdata:/data/postgres
   app:
