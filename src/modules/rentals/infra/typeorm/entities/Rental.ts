@@ -1,7 +1,10 @@
+import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -11,6 +14,10 @@ import { v4 as uuidv4 } from "uuid";
 export class Rental {
   @PrimaryGeneratedColumn()
   id: string;
+
+  @ManyToOne(() => Car)
+  @JoinColumn({ name: "car_id" })
+  car: Car;
 
   @Column()
   car_id: string;
@@ -35,6 +42,7 @@ export class Rental {
 
   @UpdateDateColumn()
   updated_at: Date;
+
   constructor() {
     if (!this.id) {
       this.id = uuidv4();
