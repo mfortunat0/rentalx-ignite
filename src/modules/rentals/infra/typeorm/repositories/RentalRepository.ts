@@ -32,4 +32,9 @@ export class RentalRepository implements IRentalRepository {
     await this.repository.save(rental);
     return rental;
   }
+
+  async findById(id: string): Promise<Rental> {
+    const rental = await this.repository.findOne(id);
+    return rental;
+  }
 }
