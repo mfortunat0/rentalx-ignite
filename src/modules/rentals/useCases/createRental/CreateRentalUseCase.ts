@@ -1,3 +1,4 @@
+import { ICarRepository } from "@modules/cars/repositories/icar.repository";
 import { IRentalRepository } from "@modules/rentals/repositories/IRentalRepository";
 import { IDateProvider } from "@shared/container/providers/dateProvider/IDateProvider";
 import { AppError } from "@shared/errors/AppError";
@@ -18,7 +19,9 @@ export class CreateRentalUseCase {
     @inject("RentalRepository")
     private rentalsRepository: IRentalRepository,
     @inject("DayjsDateProvider")
-    private dateProvider: IDateProvider
+    private dateProvider: IDateProvider,
+    @inject("CarRepository")
+    private carsRepository: ICarRepository
   ) {}
   async execute({ car_id, user_id, expected_return_date }: IRequest) {
     const minimunHours = 24;
@@ -50,6 +53,8 @@ export class CreateRentalUseCase {
       car_id,
       expected_return_date,
     });
+
+    await this.carsRepository.updateAvailable(car_id, false);
 
     return rental;
   }
