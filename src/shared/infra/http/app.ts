@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
 import * as swaggerUi from "swagger-ui-express";
 import { router } from "./routes";
