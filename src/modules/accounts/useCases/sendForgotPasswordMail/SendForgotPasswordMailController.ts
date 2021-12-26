@@ -10,5 +10,6 @@ export class SendForgotPasswordMailController {
     const { email } = request.body;
 
     await sendForgotPasswordMailUseCase.execute(email);
+    return response.send();
   }
 }
