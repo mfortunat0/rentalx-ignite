@@ -9,11 +9,11 @@ import { ICarRepository } from "@modules/cars/repositories/icar.repository";
 import { CarRepository } from "@modules/cars/infra/typeorm/repositories/car.repository";
 import { ICarImageRepository } from "@modules/cars/repositories/icarImageRepository";
 import { CarImageRepository } from "@modules/cars/infra/typeorm/repositories/carImage.repository";
-import { IRentalRepository } from "@modules/rentals/repositories/IRentalRepository";
-import { RentalRepository } from "@modules/rentals/infra/typeorm/repositories/RentalRepository";
 import "@shared/container/providers";
 import { IUserTokensRepository } from "@modules/accounts/repositories/IUserTokensRepository";
 import { UserTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UserTokensRepository";
+import { IRentalRepository } from "@modules/rentals/repositories/IRentalRepository";
+import { RentalRepository } from "@modules/rentals/infra/typeorm/repositories/RentalRepository";
 
 container.registerSingleton<ICategoryRepository>(
   "CategoryRepository",

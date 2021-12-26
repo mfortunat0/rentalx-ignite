@@ -2,7 +2,6 @@ import { CreateRentalController } from "@modules/rentals/useCases/createRental/C
 import { DevolutionRentalController } from "@modules/rentals/useCases/devolutionRental/DevolutionRentalController";
 import { ListRentalByUserController } from "@modules/rentals/useCases/listRentalByUser/ListRentalByUserController";
 import { Router } from "express";
-import { ensureAdmin } from "../middlewares/ensureAdmin";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 const rentalRoutes = Router();
